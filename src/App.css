@@ -49,10 +49,12 @@ body {
   margin-right: 10px;
 }
 .dates {
-  margin-right: 10px;
-  flex-grow: 1;
+  cursor: pointer;
+  flex-shrink: 1;
 }
 .dates2 {
+  cursor: pointer;
+  margin-left: 10px;
   flex-shrink: 1;
 }
 .task-status-container {
@@ -118,6 +120,9 @@ body {
   width: 100px;
 }
 .task {
+  width: 100px;
+}
+.status {
   width: 100px;
 }
 

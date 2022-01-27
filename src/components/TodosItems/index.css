@@ -11,3 +11,21 @@
 .name {
   width: 62px;
 }
+.delete-icons {
+  display: flex;
+  align-items: center;
+}
+.edit-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+.delete-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 24px;
+}

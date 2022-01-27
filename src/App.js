@@ -249,34 +249,11 @@ const imagesList = [
     category: 'FRUIT',
   },
 ]
-const initialContactsList = [
-  {
-    id: 1,
-    name: 'Ram',
-    project: 'project-1',
-    task: 'progress',
-    mobileNo: 9999988888,
-    isFavorite: false,
-  },
-  {
-    id: 2,
-    name: 'Pavan',
-    project: 'project-2',
-    task: 'done',
-    isFavorite: true,
-  },
-  {
-    id: 3,
-    name: 'Nikhil',
-    project: 'project-3',
-    task: 'planned',
-    isFavorite: false,
-  },
-]
+
 // Replace your code here
 class App extends Component {
   state = {
-    todosList: initialContactsList,
+    todosList: [],
     name: '',
     email: '',
     phone: '',
@@ -284,23 +261,38 @@ class App extends Component {
     task: '',
     startDate: '',
     endDate: '',
+    activeOptionId: '',
   }
 
   onAddTodoList = event => {
     event.preventDefault()
-    const {name, email, phone, project, task, endDate, startDate} = this.state
-    const newTodo = {
-      id: uuid4(),
+    const {
       name,
-      email,
-      phone,
       project,
       task,
+      endDate,
+      activeOptionId,
+      startDate,
+      todosList,
+    } = this.state
+    const len = todosList.length
+    const newTodo = {
+      sno: len,
+      name,
+      project,
+      task,
+      activeOptionId,
       startDate,
       endDate,
+      id: uuid4(),
     }
     this.setState(prevState => ({
       todosList: [...prevState.todosList, newTodo],
+      name: '',
+      email: '',
+      phone: '',
+      project: '',
+      task: '',
     }))
   }
 
@@ -332,6 +324,16 @@ class App extends Component {
     this.setState({endDate: event.target.value})
   }
 
+  onChangeTaskStatus = event => {
+    this.setState({activeOptionId: event.target.id})
+  }
+
+  onDeleteItems = id => {
+    const {todosList} = this.state
+    const filteredData = todosList.filter(eachId => eachId.id !== id)
+    this.setState({todosList: filteredData})
+  }
+
   render() {
     const {
       name,
@@ -341,6 +343,7 @@ class App extends Component {
       project,
       startDate,
       endDate,
+      activeOptionId,
       todosList,
     } = this.state
     return (
@@ -405,18 +408,26 @@ class App extends Component {
                 <input
                   type="radio"
                   id="planned"
-                  value="planned"
                   name="status"
+                  value={activeOptionId}
+                  onChange={this.onChangeTaskStatus}
                 />
                 <label htmlFor="planned">Planned</label>
                 <input
                   type="radio"
                   id="inProgress"
-                  value="inProgress"
                   name="status"
+                  value={activeOptionId}
+                  onChange={this.onChangeTaskStatus}
                 />
                 <label htmlFor="inProgress">In-Progress</label>
-                <input type="radio" id="done" value="done" name="status" />
+                <input
+                  type="radio"
+                  id="done"
+                  name="status"
+                  value={activeOptionId}
+                  onChange={this.onChangeTaskStatus}
+                />
                 <label htmlFor="done">Done</label>
               </div>
             </div>
@@ -451,7 +462,7 @@ class App extends Component {
               <TodosItems
                 key={eachItem.id}
                 todoDetails={eachItem}
-                len={todosList.length}
+                onDeleteItems={this.onDeleteItems}
               />
             ))}
           </ul>

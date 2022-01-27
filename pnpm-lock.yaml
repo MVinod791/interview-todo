@@ -5,6 +5,7 @@ dependencies:
   chalk: 4.1.0
   react: 17.0.1
   react-dom: 17.0.1_react@17.0.1
+  react-icons: 4.3.1_react@17.0.1
   uuid: 8.3.2
 devDependencies:
   eslint-config-airbnb: 18.2.1
@@ -11149,6 +11150,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==
+  /react-icons/4.3.1_react@17.0.1:
+    dependencies:
+      react: 17.0.1
+    dev: false
+    peerDependencies:
+      react: '*'
+    resolution:
+      integrity: sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
   /react-is/16.13.1:
     dev: true
     resolution:
@@ -13762,5 +13771,6 @@ specifiers:
   prettier: 2.2.1
   react: 17.0.1
   react-dom: 17.0.1
+  react-icons: 4.3.1
   react-scripts: 4.0.3
   uuid: 8.3.2
